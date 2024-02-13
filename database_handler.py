@@ -12,5 +12,4 @@ def save_to_database(db, data_dic, url):
     try:
         db.insert_one(data_dic)
     except:
-        print("")
         print("数据保存失败，错误url:", url)
