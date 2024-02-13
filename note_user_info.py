@@ -14,9 +14,13 @@ def get_note_info(note_string, note_dic={}):
     note_dic
     """
     note_dic["note_time"] = re.findall(r'"time":(\d+)', note_string)[0]
-    note_dic["note_title"] = re.findall('"title":"(.*?)"', note_string)[0]
+    note_dic["note_title"] = re.findall('"title":"(.*?)"', note_string)[1]
     note_dic["note_desc"] = re.findall('"desc":"(.*?)"', note_string)[0]
-    note_dic["ipLocation"] = re.findall('"ipLocation":"(.*?)"', note_string)[0]
+    try:
+        note_dic["ipLocation"] = re.findall('"ipLocation":"(.*?)"', note_string)[0]
+    except:
+        note_dic["ipLocation"] = ""
+
     note_dic["likeCount"] = re.findall('"likedCount":"(.*?)"', note_string)[0]
     note_dic["collectCount"] = re.findall('"collectedCount":"(.*?)"', note_string)[0]
     note_dic["commentCount"] = re.findall('"commentCount":"(.*?)"', note_string)[0]
